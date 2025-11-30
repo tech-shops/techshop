@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Tech Shop — Checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Review your cart and complete a simple accessible checkout." />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Accessibility widget: left-side pane -->
+  <aside class="accessibility-widget" aria-label="Accessibility options">
+    <button
+      type="button"
+      class="accessibility-toggle"
+      aria-expanded="false"
+      aria-controls="access-panel"
+    >
+      <img src="accessibility-icon.png" alt="" class="accessibility-icon" aria-hidden="true" />
+      <span class="visually-hidden">Open accessibility options</span>
+    </button>
+
+    <div
+      id="access-panel"
+      class="accessibility-panel"
+      hidden
+      tabindex="-1"
+      aria-labelledby="access-title"
+    >
+      <h2 id="access-title" class="accessibility-title">Basic Accessibility</h2>
+
+      <div class="accessibility-group" role="group" aria-labelledby="theme-label">
+        <p id="theme-label" class="accessibility-label">Color theme</p>
+        <div class="accessibility-options">
+          <button type="button" data-theme="default" aria-pressed="true">
+            Default
+          </button>
+          <button type="button" data-theme="high-contrast" aria-pressed="false">
+            High contrast
+          </button>
+        </div>
+      </div>
+
+      <div class="accessibility-group" role="group" aria-labelledby="font-label">
+        <p id="font-label" class="accessibility-label">Font size</p>
+        <div class="accessibility-options accessibility-options--font">
+          <button
+            type="button"
+            class="font-btn"
+            data-font-action="decrease"
+            aria-label="Decrease font size"
+          >
+            &minus;
+          </button>
+          <span class="font-size-value" aria-live="polite">100%</span>
+          <button
+            type="button"
+            class="font-btn"
+            data-font-action="increase"
+            aria-label="Increase font size"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <button type="button" class="accessibility-close">
+        Close accessibility options
+      </button>
+    </div>
+  </aside
+
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html">Tech Shop</a>
+      <nav aria-label="Primary">
+        <ul class="nav"><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact Us</a></li></ul>
+      </nav>
+
+      <a
+        class="cart-link"
+        href="checkout.html"
+        id="cart-link"
+        aria-label="View cart and checkout"
+        aria-describedby="cart-desc"
+        title="Cart"
+      >
+        <svg class="cart-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+          <path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 2h2l2.68 12.39A3 3 0 0 0 10.62 17h6.76a3 3 0 0 0 2.94-2.35L22 7H6.31" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <span class="visually-hidden">Cart</span>
+        <span id="cart-count" class="cart-count" aria-live="polite" aria-atomic="true">0</span>
+      </a>
+      <span id="cart-desc" class="visually-hidden">Number of items in your cart</span>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="container" aria-labelledby="cart-heading">
+      <h1 id="cart-heading">Your cart</h1>
+
+      <div id="cart-empty" class="notice" hidden role="status" aria-live="polite">
+        Your cart is empty. <a href="products.html">Browse products</a>.
+      </div>
+
+      <div id="cart-area" class="cart-area" hidden>
+        <p id="cart-instructions" class="visually-hidden">
+            This table lists each product in your cart. Use the Tab key to move between
+            quantity fields, remove buttons, and the totals row. Use your screen reader’s
+            table navigation or browse-mode arrow keys to move between rows and columns.
+          </p>
+          <table class="cart-table" aria-describedby="cart-instructions">
+          <caption class="visually-hidden">Items in your cart with quantity and price</caption>
+          
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Qty</th>
+              <th scope="col">Subtotal</th>
+              <th scope="col"><span class="visually-hidden">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody id="cart-body"></tbody>
+          <tfoot>
+            <tr>
+              <th scope="row" colspan="2"><strong>Total</strong></th>
+              <td id="cart-total-qty" tabindex="0" aria-label="Total quantity 0 items"><strong>0</strong></td>
+              <td id="cart-total" data-total="0.00" tabindex="0" aria-label="Total price KD 0.00"><strong>KD 0.00</strong></td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <div class="container" aria-labelledby="checkout-heading">
+      <h2 id="checkout-heading">Checkout</h2>
+      <p id="checkout-steps" class="visually-hidden">
+        Step 1, review the items in your cart. Step 2, fill in the contact, shipping,
+        and payment information. Step 3, activate the Place order button.
+      </p>
+      <form id="checkout-form" class="form-narrow" novalidate aria-describedby="checkout-steps">
+        <fieldset>
+          <legend>Contact</legend>
+          <div class="field">
+            <label for="name">Full name <span class="required-indicator" aria-hidden="true">*</span><span class="visually-hidden"> required field</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+            
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="required-indicator" aria-hidden="true">*</span><span class="visually-hidden"> required field</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required />
+          </div>
+          <div class="field">
+            <label for="phone">Phone <span class="required-indicator" aria-hidden="true">*</span><span class="visually-hidden"> required field</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Shipping</legend>
+          <div class="field">
+            <label for="address">Address <span class="required-indicator" aria-hidden="true">*</span><span class="visually-hidden"> required field</span></label>
+            <textarea id="address" name="address" rows="3" autocomplete="street-address" required></textarea>
+          </div>
+          <div class="field">
+            <label for="city">City <span class="required-indicator" aria-hidden="true">*</span><span class="visually-hidden"> required field</span></label>
+            <input id="city" name="city" type="text" autocomplete="address-level2" required />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Payment</legend>
+          <div role="radiogroup" aria-labelledby="pay-label">
+            <span id="pay-label" class="visually-hidden">Payment method</span>
+            <div class="radio">
+              <input type="radio" id="pay-card" name="pay" value="card" checked />
+              <label for="pay-card">Card</label>
+            </div>
+            <div class="radio">
+              <input type="radio" id="pay-cod" name="pay" value="cod" />
+              <label for="pay-cod">Cash on delivery</label>
+            </div>
+          </div>
+
+          <div id="card-fields">
+            <div class="field">
+              <label for="card">
+               Card number
+               <span class="required-indicator" aria-hidden="true">*</span>
+               <span class="visually-hidden"> required field</span>
+              </label>
+              <input id="card" name="card" inputmode="numeric" pattern="[0-9 ]{12,19}" placeholder="" />
+              <small class="hint">Numbers only; demo validation only.</small>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" class="btn" id="place-order" disabled>Place order</button>
+          <button type="button" id="clear-cart" class="btn-secondary">Clear cart</button>
+        </div>
+
+        <div id="form-message" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></div>
+      </form>
+
+      <div id="sr-announcer" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Tech Shop</p>
+    </div>
+  </footer>
+</body>
+</html>

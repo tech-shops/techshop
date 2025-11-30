@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Tech Shop — About Us</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Learn about Tech Shop's mission and values." />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Accessibility widget: left-side pane -->
+  <aside class="accessibility-widget" aria-label="Accessibility options">
+    <button
+      type="button"
+      class="accessibility-toggle"
+      aria-expanded="false"
+      aria-controls="access-panel"
+    >
+      <img src="accessibility-icon.png" alt="" class="accessibility-icon" aria-hidden="true" />
+      <span class="visually-hidden">Open accessibility options</span>
+    </button>
+
+    <div
+      id="access-panel"
+      class="accessibility-panel"
+      hidden
+      tabindex="-1"
+      aria-labelledby="access-title"
+    >
+      <h2 id="access-title" class="accessibility-title">Basic Accessibility</h2>
+
+      <div class="accessibility-group" role="group" aria-labelledby="theme-label">
+        <p id="theme-label" class="accessibility-label">Color theme</p>
+        <div class="accessibility-options">
+          <button type="button" data-theme="default" aria-pressed="true">
+            Default
+          </button>
+          <button type="button" data-theme="high-contrast" aria-pressed="false">
+            High contrast
+          </button>
+        </div>
+      </div>
+
+      <div class="accessibility-group" role="group" aria-labelledby="font-label">
+        <p id="font-label" class="accessibility-label">Font size</p>
+        <div class="accessibility-options accessibility-options--font">
+          <button
+            type="button"
+            class="font-btn"
+            data-font-action="decrease"
+            aria-label="Decrease font size"
+          >
+            &minus;
+          </button>
+          <span class="font-size-value" aria-live="polite">100%</span>
+          <button
+            type="button"
+            class="font-btn"
+            data-font-action="increase"
+            aria-label="Increase font size"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <button type="button" class="accessibility-close">
+        Close accessibility options
+      </button>
+    </div>
+  </aside
+
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html">Tech Shop</a>
+      <nav aria-label="Primary">
+        <ul class="nav"><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html" aria-current="page">About</a></li><li><a href="contact.html">Contact Us</a></li></ul>
+      </nav>
+
+      <a class="cart-link" href="checkout.html" id="cart-link" aria-label="View cart and checkout" aria-describedby="cart-desc" title="Cart">
+        <svg class="cart-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+          <path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 2h2l2.68 12.39A3 3 0 0 0 10.62 17h6.76a3 3 0 0 0 2.94-2.35L22 7H6.31" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <span class="visually-hidden">Cart</span>
+        <span id="cart-count" class="cart-count" aria-live="polite" aria-atomic="true">0</span>
+      </a>
+      <span id="cart-desc" class="visually-hidden">Number of items in your cart</span>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+        <div class="container" aria-labelledby="about-heading" aria-describedby="about-structure">
+      <h1 id="about-heading">About Tech Shop</h1>
+      <p id="about-structure" class="visually-hidden">
+        This page describes Tech Shop, our mission, what we believe, and our location.
+        Use heading navigation in your screen reader to jump between sections.
+      </p>
+      <p>
+        Tech Shop is dedicated to bringing the latest and most reliable technology products
+        to customers across the region. Our store focuses on accessibility, ease of use,
+        and trustworthy customer support — ensuring everyone can explore and purchase tech
+        with confidence.
+      </p>
+
+      <h2>Our Mission</h2>
+      <p>
+        To deliver high-quality electronics, fast service, and a seamless shopping
+        experience for all users.
+      </p>
+
+      <h2>What We Believe</h2>
+      <ul>
+        <li>Clear and intuitive shopping from browsing to checkout.</li>
+        <li>Respect for every customer’s needs, including accessibility and usability.</li>
+        <li>Performance-focused pages that are fast, responsive, and reliable.</li>
+      </ul>
+
+      <h2>Location</h2>
+      <p>Hamra Tower, Kuwait City.</p>
+    </div>
+
+    <div class="container" aria-labelledby="details-heading">
+      <h2 id="details-heading">Company details</h2>
+      <address>
+        Tech Shop<br />
+        Hamra Tower<br />
+        Kuwait City<br />
+        <a href="mailto:support@techshop.com">support@techshop.com</a>
+      </address>
+    </div>
+
+    <div id="sr-announcer" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Tech Shop</p>
+    </div>
+  </footer>
+</body>
+</html>
